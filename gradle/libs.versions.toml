@@ -1,0 +1,100 @@
+[versions]
+# ==========================================
+# VERSIONES DE PLUGINS Y HERRAMIENTAS
+# ==========================================
+agp = "8.13.1"                    # Android Gradle Plugin
+kotlin = "2.2.0"                 # Kotlin compiler y plugins
+
+# ==========================================
+# ANDROID SDK
+# ==========================================
+compileSdk = "36"
+targetSdk = "36"
+minSdk = "24"
+
+# ==========================================
+# JETPACK COMPOSE
+# ==========================================
+# Compose BOM (Bill of Materials) - Gestiona todas las versiones de Compose
+# BOM 2025.12.00 incluye Compose 1.10 y Material3 1.4
+composeBom = "2025.12.00"
+
+# ==========================================
+# NAVIGATION COMPOSE
+# ==========================================
+# Navigation 2.8.0+ introdujo Type-Safe Navigation
+# La versión 2.9.6 es la más reciente estable
+navigationCompose = "2.9.6"
+
+# ==========================================
+# INYECCIÓN DE DEPENDENCIAS - KOIN
+# ==========================================
+# Koin 4.x es la versión actual para Kotlin 2.x
+koinBom = "4.1.1"
+
+# ==========================================
+# SERIALIZACIÓN
+# ==========================================
+# Necesaria para Type-Safe Navigation (rutas serializables)
+kotlinxSerialization = "1.9.0"
+
+# ==========================================
+# ANDROIDX CORE
+# ==========================================
+coreKtx = "1.16.0"
+lifecycleRuntimeKtx = "2.9.0"
+activityCompose = "1.10.1"
+
+[libraries]
+# ==========================================
+# ANDROIDX CORE
+# ==========================================
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+
+# ==========================================
+# JETPACK COMPOSE (usando BOM)
+# ==========================================
+# El BOM garantiza compatibilidad entre todas las librerías de Compose
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+# Las siguientes dependencias NO necesitan versión gracias al BOM
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+# Íconos extendidos de Material3
+androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+
+# ==========================================
+# NAVIGATION COMPOSE
+# ==========================================
+# Permite navegación declarativa en Compose con Type-Safety
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+
+# ==========================================
+# KOIN - Inyección de Dependencias (usando BOM)
+# ==========================================
+koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koinBom" }
+# Core de Koin para Android
+koin-android = { group = "io.insert-koin", name = "koin-android" }
+# Integración con Jetpack Compose (incluye koinViewModel)
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose" }
+
+# ==========================================
+# KOTLINX SERIALIZATION
+# ==========================================
+# Necesaria para serializar/deserializar rutas de navegación
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+
+[plugins]
+# ==========================================
+# PLUGINS DE GRADLE
+# ==========================================
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+# Plugin para Jetpack Compose (requerido desde Kotlin 2.0)
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+# Plugin para @Serializable - requerido para Type-Safe Navigation
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

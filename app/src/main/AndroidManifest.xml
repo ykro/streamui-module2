@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+================================================================================
+ANDROID MANIFEST
+================================================================================
+
+El AndroidManifest.xml es el archivo de configuración principal de la app.
+Define:
+- Información del paquete
+- Componentes de la app (Activities, Services, etc.)
+- Permisos requeridos
+- Configuración de hardware/software
+
+CONCEPTO CLAVE: Application Class
+
+android:name=".StreamApplication" indica que usamos una clase Application
+personalizada. Esto es necesario para inicializar Koin al arrancar la app.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:name=".StreamApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="StreamUI"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.StreamUI">
+
+        <!--
+        MainActivity es el punto de entrada de la app.
+        En Compose, típicamente tenemos UNA sola Activity que
+        maneja toda la navegación internamente.
+
+        SINGLE ACTIVITY ARCHITECTURE:
+        - Una Activity, múltiples Composables (pantallas)
+        - La navegación se maneja con Navigation Compose
+        - Beneficios: Estado compartido, transiciones fluidas
+        -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.StreamUI">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

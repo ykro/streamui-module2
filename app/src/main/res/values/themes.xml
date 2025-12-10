@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+================================================================================
+THEMES.XML
+================================================================================
+
+Define el tema base de la aplicación.
+En apps Compose, el tema XML es mínimo porque MaterialTheme
+en Compose maneja los colores, tipografía y formas.
+
+Usamos Theme.Material3.DayNight.NoActionBar porque:
+1. Material3: Diseño moderno de Material You
+2. DayNight: Soporte automático para modo oscuro
+3. NoActionBar: Compose maneja su propia TopAppBar
+-->
+<resources>
+    <style name="Theme.StreamUI" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Colores de la barra de estado -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>
