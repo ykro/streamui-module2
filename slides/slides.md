@@ -4,22 +4,17 @@ theme: default
 paginate: true
 backgroundColor: #fff
 style: |
-  section {
-    font-family: 'Inter', sans-serif;
-  }
-  code {
-    background-color: #f0f0f0;
-    color: #333;
-  }
-  h1 {
-    color: #2E7D32;
-  }
-  h2 {
-    color: #1B5E20;
-  }
+  section { font-family: 'Inter', sans-serif; }
+  h1 { color: #2E7D32; }
+  h2 { color: #1B5E20; }
+  code { background-color: #f0f0f0; padding: 0.2em; border-radius: 4px; }
+  pre { background-color: #f5f5f5; border-radius: 8px; }
+  .center { text-align: center; }
+  .small { font-size: 0.8em; }
 ---
 
-# Lesson 2: Android Advanced Development
+<!-- _class: lead -->
+# Module 2: Android Advanced Development
 ## Architecture, Navigation & Modern UI
 ### Adrián Catalán
 ### adriancatalan@galileo.edu
@@ -36,6 +31,7 @@ style: |
 
 ---
 
+<!-- _class: lead -->
 # 1. Advanced UI & Navigation
 
 
@@ -196,19 +192,9 @@ MainActivity
 ```
 
 
----
 
-## Resources: Navigation
 
-1.  [**Official Guide: Type Safety in Kotlin DSL**](https://developer.android.com/guide/navigation/design/type-safety)
-2.  [**Now in Android: Navigation Compose**](https://github.com/android/nowinandroid/tree/main/feature/search) 
-3.  [**Kotlin Serialization Setup**](https://kotlinlang.org/docs/serialization.html#setup)
-4.  [**Codelab: Navigation in Jetpack Compose**](https://developer.android.com/codelabs/jetpack-compose-navigation)
-5.  [**Medium: Migrating to Type-Safe Navigation**](https://medium.com/androiddevelopers/navigation-compose-type-safety-f50f28325041)
-
----
-
-<!-- _class: invert -->
+<!-- _class: lead -->
 
 # 2. MVVM & Basic UDF
 ## Bringing order to chaos
@@ -383,19 +369,10 @@ fun HomeScreen(viewModel: HomeViewModel = koinViewModel()) {
 }
 ```
 
----
-
-## Resources: MVVM
-
-1.  [**Guide to App Architecture**](https://developer.android.com/topic/architecture) 
-2.  [**State Holder Pattern**](https://developer.android.com/topic/architecture/ui-layer/stateholders)
-3.  [**Unidirectional Data Flow in Compose**](https://developer.android.com/develop/ui/compose/architecture#udf)
-4.  [**ViewModel Overview**](https://developer.android.com/topic/libraries/architecture/viewmodel)
-5.  [**Codelab: State in Jetpack Compose**](https://developer.android.com/codelabs/jetpack-compose-state)
-
----
 
 
+
+<!-- _class: lead -->
 # 3. Dependency Injection
 
 ---
@@ -469,23 +446,18 @@ Both ViewModels share the **same** Repository instance
 
 Both ViewModels share the **same** Repository instance
 
-```mermaid
-graph TD
-    subgraph KOIN_MODULE [Koin Module]
-        Repo[MockMusicRepository]                
-    end
-
-    subgraph VIEWMODELS [Consumers]
-        HVM[HomeViewModel]
-        SVM[SearchViewModel]
-    end
-
-    Repo -->|Injected into| HVM
-    Repo -->|Injected into| SVM
-
-    style Repo fill:#d4edda,stroke:#28a745,color:#000
-    style HVM fill:#cce5ff,stroke:#007bff,color:#000
-    style SVM fill:#cce5ff,stroke:#007bff,color:#000
+```text
++-----------------------+
+|      Koin Module      |
+| [MockMusicRepository] |
++-----------+-----------+
+            |
+            | Injected into
+            v
++-----------+-----------+
+|       Consumers       |
+| [HomeVM]   [SearchVM] |
++-----------------------+
 ```
 
 ---
@@ -529,19 +501,9 @@ fun HomeScreen(
 }
 ```
 
----
 
-## Resources: Koin
 
-1.  [**Koin Official Docs for Android**](https://insert-koin.io/docs/quickstart/android)
-2.  [**Koin with Jetpack Compose**](https://insert-koin.io/docs/reference/koin-android/compose)
-3.  [**Manual Dependency Injection**](https://developer.android.com/training/dependency-injection/manual) 
-4.  [**Hilt vs Koin**](https://medium.com/android-news/hilt-vs-koin-dependency-injection-frameworks-for-android-69375543c7b8)
-5.  [**Video: DI in a Nutshell**](https://www.youtube.com/watch?v=eH9UrciQqYA)
-
----
-
-<!-- _class: invert -->
+<!-- _class: lead -->
 
 # Deep Dive
 
@@ -658,6 +620,7 @@ Saves state across configuration changes and survives until the screen is destro
 
 ---
 
+<!-- _class: lead -->
 # Challenge Lab
 
 ---
@@ -689,4 +652,33 @@ Saves state across configuration changes and survives until the screen is destro
     *   Implement a `Scaffold` with `bottomBar` in `MainActivity`.
     *   Add tabs for "Home" and "Highlights".
     *   Connect the tabs to the Navigation Graph.
+
+
+<!-- _class: lead -->
+# Resources & Wrap-up
+
+---
+
+## Resources
+
+**Navigation**
+1.  [**Official Guide: Type Safety in Kotlin DSL**](https://developer.android.com/guide/navigation/design/type-safety)
+2.  [**Now in Android: Navigation Compose**](https://github.com/android/nowinandroid/tree/main/feature/search)
+3.  [**Kotlin Serialization Setup**](https://kotlinlang.org/docs/serialization.html#setup)
+4.  [**Codelab: Navigation in Jetpack Compose**](https://developer.android.com/codelabs/jetpack-compose-navigation)
+5.  [**Medium: Migrating to Type-Safe Navigation**](https://medium.com/androiddevelopers/navigation-compose-type-safety-f50f28325041)
+
+**MVVM & UDF**
+1.  [**Guide to App Architecture**](https://developer.android.com/topic/architecture)
+2.  [**State Holder Pattern**](https://developer.android.com/topic/architecture/ui-layer/stateholders)
+3.  [**Unidirectional Data Flow in Compose**](https://developer.android.com/develop/ui/compose/architecture#udf)
+4.  [**ViewModel Overview**](https://developer.android.com/topic/libraries/architecture/viewmodel)
+5.  [**Codelab: State in Jetpack Compose**](https://developer.android.com/codelabs/jetpack-compose-state)
+
+**Dependency Injection (Koin)**
+1.  [**Koin Official Docs for Android**](https://insert-koin.io/docs/quickstart/android)
+2.  [**Koin with Jetpack Compose**](https://insert-koin.io/docs/reference/koin-android/compose)
+3.  [**Manual Dependency Injection**](https://developer.android.com/training/dependency-injection/manual)
+4.  [**Hilt vs Koin**](https://medium.com/android-news/hilt-vs-koin-dependency-injection-frameworks-for-android-69375543c7b8)
+5.  [**Video: DI in a Nutshell**](https://www.youtube.com/watch?v=eH9UrciQqYA)
 
